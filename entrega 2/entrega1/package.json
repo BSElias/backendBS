@@ -1,0 +1,20 @@
+{
+    "name": "entrega",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node --watch --no-warnings src/server.js",
+        "stop-linux": "killall -9 node",
+        "stop-windows": "taskill /F /IM node.exe",
+        "stop-mac": "pkill -f node"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.19.2",
+        "multer": "^1.4.5-lts.1"
+    }
+}
