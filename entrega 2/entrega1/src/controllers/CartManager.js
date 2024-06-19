@@ -13,7 +13,7 @@ export default class CartManager {
     // Fun. privadas
     #generarId = (carts) => {
         let idMayor = 0;
-        carts.forEach(cart => {
+        carts.forEach((cart) => {
             if (cart.id > idMayor) {
                 idMayor = cart.id;
             }
@@ -33,7 +33,7 @@ export default class CartManager {
 
     #identifyId = async (id) => {
         const respuesta = await this.#readCarts();
-        const cartId = respuesta.find(cart => cart.id === id);
+        const cartId = respuesta.find((cart) => cart.id === id);
         return cartId;
     };
 
@@ -48,22 +48,22 @@ export default class CartManager {
     // Fun. públicas
     addCart = async () => {
         await this.#ensureFileExists();
-        let carts = await this.#readCarts();
+        const carts = await this.#readCarts();
 
         const cart = {
             id: this.#generarId(carts),
-            products: []
-        }
+            products: [],
+        };
 
-        let allCarts = [...carts, cart];
+        const allCarts = [ ...carts, cart ];
         await this.#escribirArchivo(allCarts);
-        return "Carrito Agregado"
+        return "Carrito Agregado";
     };
 
     getCartById = async (id) => {
         const respuesta = await this.#identifyId(id);
         if(!respuesta){
-            return "Not found"
+            return "Not found";
         } else {
             return respuesta;
         }
@@ -72,8 +72,8 @@ export default class CartManager {
     addProductToCart = async (cartId, productId) => {
         await this.#ensureFileExists();
         try {
-            let cartById = await this.getCartById(cartId);
-            let productById = await PRODUCT.getProductById(productId);
+            const cartById = await this.getCartById(cartId);
+            const productById = await PRODUCT.getProductById(productId);
 
             if (!cartById) {
                 return "Carrito no encontrado";
@@ -83,9 +83,9 @@ export default class CartManager {
                 return "Producto no encontrado";
             }
 
-            let carts = await this.#readCarts();
-            const cartIndex = carts.findIndex(cart => cart.id === cartId);
-            const productIndex = carts[cartIndex].products.findIndex(product => product.productId === productId);
+            const carts = await this.#readCarts();
+            const cartIndex = carts.findIndex((cart) => cart.id === cartId);
+            const productIndex = carts[cartIndex].products.findIndex((product) => product.productId === productId);
 
             if (productIndex === -1) {
                 carts[cartIndex].products.push({ productId, cantidad: 1 });
@@ -104,7 +104,7 @@ export default class CartManager {
     deleteCartById = async (id) => {
         await this.#ensureFileExists();
         let carts = await this.#readCarts();
-        carts = carts.filter(cart => cart.id !== id);
+        carts = carts.filter((cart) => cart.id !== id);
         await this.#escribirArchivo(carts);
         console.log("Carrito Eliminado");
     };
@@ -114,4 +114,4 @@ export default class CartManager {
         const carts = await this.#readCarts();
         return carts;
     };
-};
+}

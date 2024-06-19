@@ -1,0 +1,19 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    height: 100vh;
+    width: 100vw;
+    color: white;
+    background-color: grey;
+}
+
+.contenedor {
+    width: 100%;
+    padding: 0px 35px 35px 35px;
+}

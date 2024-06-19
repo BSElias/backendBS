@@ -1,33 +1,32 @@
 import { Router } from "express";
 import CartManager from "../controllers/CartManager.js";
 
-const cartRouter = Router();
+const ROUTER = Router();
 const CART = new CartManager();
 
 // C.Manager
-cartRouter.post('/', async (req, res) => {
+ROUTER.post("/", async (req, res) => {
     res.status(201).send(await CART.addCart());
 });
 
-cartRouter.get('/', async (req, res) => {
+ROUTER.get("/", async (req, res) => {
     res.status(200).send(await CART.getCarts());
 });
 
-cartRouter.get('/:id', async (req, res) => {
-    let id = Number(req.params.id);
+ROUTER.get("/:id", async (req, res) => {
+    const id = Number(req.params.id);
     res.status(200).send(await CART.getCartById(id));
 });
 
-cartRouter.delete('/:id', async (req, res) => {
-    let id = Number(req.params.id);
+ROUTER.delete("/:id", async (req, res) => {
+    const id = Number(req.params.id);
     return res.status(200).send(await CART.deleteCartById(id));
 });
 
-cartRouter.post('/:cid/products/:pid', async (req, res) => {
-    let cartId = Number(req.params.cid);
-    let productId = Number(req.params.pid);
+ROUTER.post("/:cid/products/:pid", async (req, res) => {
+    const cartId = Number(req.params.cid);
+    const productId = Number(req.params.pid);
     res.status(200).send(await CART.addProductToCart(cartId, productId));
 });
 
-export default cartRouter;
-
+export default ROUTER;

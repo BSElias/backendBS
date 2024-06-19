@@ -1,1 +1,15 @@
-[]
+[
+	{
+		"id": 1,
+		"category": "asd",
+		"title": "asd",
+		"description": "asdas",
+		"price": 10,
+		"thumbnail": [
+			"imagen"
+		],
+		"code": "gsxr",
+		"stock": 12,
+		"available": true
+	}
+]
