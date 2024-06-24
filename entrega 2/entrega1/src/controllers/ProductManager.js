@@ -2,12 +2,11 @@ import fs from "fs";
 import path from "path";
 
 export default class ProductManager {
-    // Constructor
+
     constructor() {
         this.path = path.join("./src/database/productos.json");
     }
 
-    // Fun. privadas
     #generarId = (products) => {
         let idMayor = 0;
         products.forEach((product) => {

@@ -1,15 +1,15 @@
 [
 	{
 		"id": 1,
-		"category": "asd",
-		"title": "asd",
-		"description": "asdas",
-		"price": 10,
+		"category": "motos",
+		"title": "kawasaki h2 r",
+		"description": "supersports",
+		"price": 65000,
 		"thumbnail": [
 			"imagen"
 		],
-		"code": "gsxr",
-		"stock": 12,
+		"code": "kwH2R",
+		"stock": 10,
 		"available": true
 	}
 ]

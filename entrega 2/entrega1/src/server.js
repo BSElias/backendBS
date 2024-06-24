@@ -10,14 +10,19 @@ const PORT = 8080;
 const HOST = "localhost";
 const server = express();
 
+//Decodificador body
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 
 //Config plantillas
 configHandlebars.config(server);
 
-//Rutas
+//Enrutadores
+server.use("/", viewsRouter);
+server.use("/api/products", productRouter);
+server.use("/api/carts", cartRouter);
 
+//Rutas
 server.use("/", express.static(path.css));
 server.use("/", express.static(path.js));
 server.use("/", express.static(path.images));
@@ -25,17 +30,12 @@ server.use("/realTimeProducts", express.static(path.js));
 server.use("/realTimeProducts", express.static(path.css));
 server.use("/realTimeProducts", express.static(path.images));
 
-//Enrutadores
-server.use("/", viewsRouter);
-server.use("/api/products", productRouter);
-server.use("/api/carts", cartRouter);
-
 //Rutas inexistentes
 server.use("*", (req, res) => {
-    return res.status(404).send("<h1>Error 404</h1>");
+    return res.status(404).send("<h1>Error 404 - No existe la URL indicada </h1>");
 });
 
-// control de errores internos
+//Control de errores internos
 server.use((error, req, res) => {
     console.log("Error:", error.message);
     res.status(500).send("<h1>Error 500 - Error en el Servidor</h1>");

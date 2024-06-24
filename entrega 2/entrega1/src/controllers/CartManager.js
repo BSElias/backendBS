@@ -5,12 +5,11 @@ import ProductManager from "./ProductManager.js";
 const PRODUCT = new ProductManager();
 
 export default class CartManager {
-    // Constructor
+
     constructor() {
         this.path = path.join("./src/database/carrito.json");
     }
 
-    // Fun. privadas
     #generarId = (carts) => {
         let idMayor = 0;
         carts.forEach((cart) => {

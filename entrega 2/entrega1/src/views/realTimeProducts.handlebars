@@ -1,44 +1,51 @@
-<div class="contenedor">
-    <h1 class="titulo titulo-principal">Crear Productos:</h1>
-    <form action="/realtimeproducts" method="POST" enctype="multipart/form-data" class="ingresoProductos" id="form">
-        <div class="ingresoProductos__contenedor">
-            <div class="contenedor__file">
-                <input type="text" name="file" id="file" class="file" accept="image/*" placeholder="Image" required />
-            </div>
-            <div class="contenedor__texto">
-                <input type="text" name="code" id="code" placeholder="Code" required />
-                <input type="text" name="category" id="category" placeholder="Category" required />
-                <input type="text" name="title" id="title" placeholder="Title" required />
-                <input type="number" name="price" id="price" step="10" placeholder="Price" required />
-                <input type="number" name="stock" id="stock" step="1" placeholder="Stock" required />
-                <input type="text" name="description" id="description" placeholder="Description" required />
-            </div>
-        </div>
-        <div class="contenedor__button">
-            <input type="reset" value="Limpiar" class="button limpiar" />
-            <input type="submit" value="Guardar" class="button guardar" />
-        </div>
-    </form>
-    <table class="contenedor__table">
-        <thead class="table__categories">
-            <tr class="categories__list">
-                <th class="id">Id:</th>
-                <th class="code">Code:</th>
-                <th class="category">Category:</th>
-                <th class="title">Title:</th>
-                <th class="thumbnail">Thumbnail:</th>
-                <th class="price">Price:</th>
-                <th class="stock">Stock:</th>
-                <th class="available">Available:</th>
-                <th class="edit" id="edit">Edit:</th>
-                <th class="delete" id="delete">Delete:</th>
-            </tr>
-        </thead>
-        <tbody class="table__categories" id="tbody">
-            {{!-- Aqui van todos los productos --}}
-        </tbody>
-    </table>
-</div>
+<!DOCTYPE html>
+<html lang="es">
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="index.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Productos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="titulo titulo-principal">Crear Productos:</h1>
+    </header>
+
+    <main>
+        <div class="contenedor">
+            <form action="/realtimeproducts" method="POST" enctype="multipart/form-data" class="ingresoProductos"
+                id="form">
+                <div class="ingresoProductos__contenedor">
+                    <div class="contenedor__texto">
+                        <input type="text" name="code" id="code" placeholder="Code" required />
+                        <input type="text" name="category" id="category" placeholder="Category" required />
+                        <input type="text" name="title" id="title" placeholder="Title" required />
+                        <input type="number" name="price" id="price" step="10" placeholder="Price" required />
+                        <input type="number" name="stock" id="stock" step="1" placeholder="Stock" required />
+                        <input type="text" name="description" id="description" placeholder="Description" required />
+                    </div>
+
+                    <div class="contenedor__file">
+                        <input type="text" name="file" id="file" class="file" accept="image/*" placeholder="Image"
+                            required />
+                    </div>
+                </div>
+
+                <div class="contenedor__button">
+                    <input type="reset" value="Limpiar" class="button limpiar" />
+                    <input type="submit" value="Crear" class="button crear" />
+                </div>
+            </form>
+
+            <div class="product-list" id="product-list">
+            </div>
+        </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
