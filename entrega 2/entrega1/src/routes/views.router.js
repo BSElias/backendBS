@@ -1,13 +1,11 @@
 import { Router } from "express";
-import ProductManager from "../controllers/ProductManager.js";
 
 const ROUTER = Router();
-const PRODUCT = new ProductManager();
 
 ROUTER.get("/", async (req, res) => {
     try {
         const allProducts = await PRODUCT.getProducts();
-        return res.status(200).render("index", {
+        return res.status(200).render("products", {
             title: "Products",
             products: allProducts,
         });
@@ -17,7 +15,21 @@ ROUTER.get("/", async (req, res) => {
 });
 
 ROUTER.get("/realtimeproducts", async (req, res) => {
-    return res.status(200).render("realTimeProducts", { title: "realTimeProducts" });
+    try {
+        return res.status(200).render("realTimeProducts", { title: "realTimeProducts" });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ status: false, message: "Hubo un error en el servidor" });
+    }
 });
+
+// ROUTER.get("/", async (req, res) => {
+//     try {
+//         return res.status(200).render("home", { title: "Home" });
+//     } catch (error) {
+//         console.log(error.message);
+//         res.status(500).json({ status: false, message: "Hubo un error en el servidor" });
+//     }
+// });
 
 export default ROUTER;

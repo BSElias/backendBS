@@ -1,6 +1,4 @@
 import { Server } from "socket.io";
-
-/* Servidor */
 import ProductManager from "../controllers/ProductManager.js";
 
 const PRODUCT = new ProductManager();

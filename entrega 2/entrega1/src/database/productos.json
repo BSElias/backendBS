@@ -1,15 +1,1 @@
-[
-	{
-		"id": 1,
-		"category": "motos",
-		"title": "kawasaki h2 r",
-		"description": "supersports",
-		"price": 65000,
-		"thumbnail": [
-			"imagen"
-		],
-		"code": "kwH2R",
-		"stock": 10,
-		"available": true
-	}
-]
+[]
