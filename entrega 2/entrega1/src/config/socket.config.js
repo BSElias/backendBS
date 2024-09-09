@@ -31,7 +31,7 @@ const CONFIG = (serverHTTP) => {
         socket.on("delete-product", async (id) => {
             console.log(id);
             try {
-                await PRODUCT.deleteProductById(Number(id));
+                await PRODUCT.deleteProductById(id);
                 const updatedProducts = await PRODUCT.getProducts();
                 socket.emit("products", updatedProducts);
             } catch (error) {
@@ -43,7 +43,7 @@ const CONFIG = (serverHTTP) => {
         socket.on("toggle-availability", async (id) => {
             console.log(id);
             try {
-                await PRODUCT.toggleAvailability(Number(id));
+                await PRODUCT.toggleAvailability(id);
                 const updatedProducts = await PRODUCT.getProducts();
                 socket.emit("products", updatedProducts);
             } catch (error) {

@@ -1,24 +1,25 @@
 import express from "express";
-import path from "./utils/path.js";
-import productRouter from "./routes/api.products.router.js";
-import viewsProductRouter from "./routes/app.product.router.js";
+import handlebars from "./config/handlebars.config.js";
+import productRouter from "./routes/api.product.router.js";
 import cartRouter from "./routes/api.cart.router.js";
-import viewsRouter from "./routes/views.router.js";
-import configHandlebars from "./config/handlebars.config.js";
-import serverSocketIO from "./config/socket.config.js";
-import mongoDB from "./config/mongoose.config.js";
+import path from "./utils/paths.js";
+import viewsProductRouter from "./routes/app.product.router.js";
 import viewsCartRouter from "./routes/app.cart.router.js";
+import viewsRouter from "./routes/views.router.js";
+import serverSocket from "./config/socket.config.js";
+import mongoDB from "./config/mongoose.config.js";
 
+const server = express();
 const PORT = 8080;
 const HOST = "localhost";
-const server = express();
 
 //Decodificador body
+
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 
 //Config plantillas
-configHandlebars.config(server);
+handlebars.config(server);
 
 //Enrutadores
 server.use("/", viewsRouter);
@@ -40,7 +41,7 @@ server.use("/realTimeProducts", express.static(path.images));
 
 //Rutas inexistentes
 server.use("*", (req, res) => {
-    return res.status(404).send("<h1>Error 404 - No existe la URL indicada </h1>");
+    res.status(404).send("<h1>Error 404 - No existe la URL indicada </h1>");
 });
 
 //Control de errores internos
@@ -56,4 +57,4 @@ const serverHTTP = server.listen(PORT, ()=>{
 });
 
 //Config servidor de websocket
-serverSocketIO.CONFIG(serverHTTP);
+serverSocket.CONFIG(serverHTTP);

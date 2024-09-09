@@ -1,5 +1,5 @@
 import fs from "fs";
-import path from "./path";
+import path from "./paths";
 
 const deleteImage = async (filename) => {
     const filepath = `${path.images}/${filename}`;
